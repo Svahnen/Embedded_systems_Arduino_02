@@ -13,10 +13,24 @@ int main(void) {
     LED_init();
 
     LED_toggle(RED);
+    int time1 = 0;
+    int time2 = 0;
+
     while (1) {
-        if (TCNT0 >= 255) {
+        // OCF0B | (1<< TIFR0))
+        // Man borde kunna shifta allt till höger och kolla om det är 1
+        if (bit_is_set(TIFR0, OCF0B)) {  // Look at overflow bit, 16 000 000 / 1024
+            time1++;
+            time2++;
+            TIFR0 |= (1 << OCF0B);
+        }
+        if (time1 == 15625) {  // Count seconds
+            // LED_toggle(RED);
+            time1 = 0;
+        }
+        if (time2 == 625) {  // Count 250ms
             LED_toggle(RED);
-            TCNT0 = 0;  // reset counter
+            time2 = 0;
         }
     }
 }
