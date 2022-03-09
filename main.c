@@ -8,11 +8,15 @@
 #include "timer.h"
 
 int main(void) {
+    timer_init();
     uart_init();
+    LED_init();
 
+    LED_toggle(RED);
     while (1) {
-        /* remove this once you've verified it works */
-        printf_P(PSTR("Hello there\n"));
-        _delay_ms(1000);
+        if (TCNT0 >= 255) {
+            LED_toggle(RED);
+            TCNT0 = 0;  // reset counter
+        }
     }
 }
