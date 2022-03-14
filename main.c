@@ -18,7 +18,7 @@ int main(void) {
 
     while (1) {
         // OCF0B | (1<< TIFR0))
-        // Man borde kunna shifta allt till höger och kolla om det är 1
+        // Instead of bit_is_set it should be possible to shift the bit all the way to the right and see if its == 1
         if (bit_is_set(TIFR0, OCF0B)) {  // Look at overflow bit, 16 000 000 / 1024
             time1++;
             time2++;
