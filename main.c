@@ -15,6 +15,7 @@ int main(void) {
     LED_toggle(RED);
     int time1 = 0;
     int time2 = 0;
+    int time3 = 0;
 
     while (1) {
         // OCF0B | (1<< TIFR0))
@@ -22,15 +23,19 @@ int main(void) {
         if (bit_is_set(TIFR0, OCF0B)) {  // Look at overflow bit, 16 000 000 / 1024
             time1++;
             time2++;
-            TIFR0 |= (1 << OCF0B);
+            TIFR0 |= (1 << OCF0B);  // Reset bit
         }
-        if (time1 == 15625) {  // Count seconds
+        if (time1 == 15625) {  // Count seconds, 16 000 000 Hz / 1024 = 15625 Hz
             // LED_toggle(RED);
             time1 = 0;
         }
-        if (time2 == 625) {  // Count 250ms
-            LED_toggle(RED);
+        if (time2 == 156) {  // Count ~10ms, 1 % of 15625 Hz ~156 Hz (1000ms for one second, 10ms = 1% of 1000).
+            time3++;
             time2 = 0;
+        }
+        if (time3 == 10) {  // Count ~100ms, ~10ms * 10 = ~100ms
+            LED_toggle(RED);
+            time3 = 0;
         }
     }
 }
