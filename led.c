@@ -7,9 +7,9 @@ void LED_init() {
     DDRB &= ~(1 << GREEN);
     DDRB &= ~(1 << RED);
 
-    // OC0A_PIN
-    DDRD |= (1 << PD6);   // Set OC0A to output
-    PORTD |= (1 << PD6);  // Set OC0A to initial high, so it is turned off
+    // OC0A
+    DDRD |= (1 << PD6);  // Set OC0A to output
+    // PORTD &= ~(1 << PD6);  // Set OC0A to initial high, so it is turned on
 }
 
 void LED_toggle(int LED) {
