@@ -8,7 +8,8 @@
 #include "timer.h"
 
 int main(void) {
-    timer_init();
+    timer0_init();
+    timer2_init();
     uart_init();
     LED_init();
 

@@ -2,7 +2,7 @@
 
 #include <avr/io.h>
 
-void timer_init() {
+void timer0_init() {
     TCNT0 = 0;  // Clear the counter
 
     // Table 20-7. Clock Select Bit Description (page 173 in datasheet)
@@ -20,3 +20,11 @@ void timer_init() {
     TCCR0A &= ~(1 << COM0A0);
     TCCR0A |= (1 << COM0A1);
 }
+
+void timer2_init() {
+    TCNT2 = 0;                           // Clear the counter
+    TCCR2B = (1 << CS10) | (1 << CS12);  // Timer mode with 1024 prescaler
+    TCCR2A &= ~(1 << WGM00);             // CTC mode
+    TCCR2A |= (1 << WGM01);              // CTC mode
+}
+
