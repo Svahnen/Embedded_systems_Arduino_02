@@ -26,5 +26,6 @@ void timer2_init() {
     TCCR2B = (1 << CS10) | (1 << CS12);  // Timer mode with 1024 prescaler
     TCCR2A &= ~(1 << WGM00);             // CTC mode
     TCCR2A |= (1 << WGM01);              // CTC mode
-}
 
+    OCR0A = 250;  // Set top counter to 16000000/1024*0.016 to get ~16ms
+}
