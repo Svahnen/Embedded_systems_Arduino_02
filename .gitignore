@@ -59,4 +59,4 @@ dkms.conf
 *Test.c
 
 # Vim swap
-.swp
+*.swp
