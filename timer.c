@@ -8,5 +8,5 @@ void timer_init() {
     TCCR0A &= ~(1 << WGM00);             // CTC mode
     TCCR0A |= (1 << WGM01);              // CTC mode
 
-    // TIMSK1 |= (1 << OCIE0A);
+    OCR0A = 156; // Set top counter to 16000000/1024/100 to get ~10ms
 }
