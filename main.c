@@ -16,11 +16,10 @@ int main(void) {
     int time1 = 0;
 
     while (1) {
-        // OCF0B | (1<< TIFR0))
         // Instead of bit_is_set it should be possible to shift the bit all the way to the right and see if its == 1
         if (bit_is_set(TIFR0, OCF0A)) {  // Look at compare flag, 16 000 000 / 1024
             time1++;
-            TIFR0 |= (1 << OCF0A);  // Reset bit
+            TIFR0 = (1 << OCF0A);  // Reset bit, we use = here since we clear the bit by setting 1 even tho its already 1, and if other flags in this register where 1 they would also be reset if we used |=
         }
         if (time1 == 10) {
             LED_toggle(RED);
