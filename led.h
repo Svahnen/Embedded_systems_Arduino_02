@@ -7,5 +7,6 @@
 
 void LED_init(void);
 void LED_toggle(int LED);
+int simple_ramp(void);
 
 #endif  // _LED_H_

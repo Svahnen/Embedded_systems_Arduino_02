@@ -14,11 +14,11 @@ int main(void) {
     LED_init();
 
     while (1) {
-        OCR0A = 255;
-        _delay_ms(1000);
-        OCR0A = 100;
-        _delay_ms(1000);
-        OCR0A = 0;
-        _delay_ms(1000);
+        if (bit_is_set(TIFR2, OCF2A)) {
+            OCR0A = simple_ramp();
+            TIFR2 = (1 << OCF2A);
+        }
+        // OCR0A = simple_ramp();
+        // _delay_ms(16);
     }
 }

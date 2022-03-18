@@ -27,5 +27,5 @@ void timer2_init() {
     TCCR2A &= ~(1 << WGM00);             // CTC mode
     TCCR2A |= (1 << WGM01);              // CTC mode
 
-    OCR0A = 250;  // Set top counter to 16000000/1024*0.016 to get ~16ms
+    OCR2A = 250;  // Set top counter to 16000000/1024*0.016 to get ~16ms
 }
