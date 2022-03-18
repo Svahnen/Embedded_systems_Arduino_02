@@ -22,10 +22,15 @@ void timer0_init() {
 }
 
 void timer2_init() {
-    TCNT2 = 0;                           // Clear the counter
-    TCCR2B = (1 << CS10) | (1 << CS12);  // Timer mode with 1024 prescaler
-    TCCR2A &= ~(1 << WGM00);             // CTC mode
-    TCCR2A |= (1 << WGM01);              // CTC mode
+    TCNT2 = 0;              // Clear the counter
+    TCCR2B |= (1 << CS20);  // Timer mode with 1024 prescaler
+    TCCR2B |= (1 << CS21);
+    TCCR2B |= (1 << CS22);
+
+    TCCR2A |= (1 << COM2A0);
+    TCCR2A |= (1 << COM2A1);
+    // TCCR2A &= ~(1 << WGM20);
+    // TCCR2A |= (1 << WGM21);
 
     OCR2A = 250;  // Set top counter to 16000000/1024*0.016 to get ~16ms
 }

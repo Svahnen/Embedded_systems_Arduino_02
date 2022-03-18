@@ -18,7 +18,5 @@ int main(void) {
             OCR0A = simple_ramp();
             TIFR2 = (1 << OCF2A);
         }
-        // OCR0A = simple_ramp();
-        // _delay_ms(16);
     }
 }
